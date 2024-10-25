@@ -8,14 +8,15 @@
   background-color: $background-color-card;
   padding: $medium-padding;
   border-radius: $medium-border-radius;
-  box-shadow: 0px 21px 25.9px -14px #0000001A;
+  box-shadow: 0px 21px 25.9px -14px #0000001a;
 
-  .card-info, .card-img {
+  .card-info,
+  .card-img {
     @include display-colu();
   }
   span {
     @include text-span();
-    background-color: #BFC66B;
+    background-color: #bfc66b;
     padding: $small-padding;
     border-radius: $large-border-radius;
   }
