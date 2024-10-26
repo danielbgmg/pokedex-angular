@@ -11,6 +11,11 @@ section {
     align-items: center;
     gap: 32px;
 
+    .logo-img {
+      position: relative;
+      width: 223px;
+      height: 63px;
+    }
     .input-search {
       display: inline-flex;
       width: 100%;
@@ -47,12 +52,12 @@ section {
   @media screen and (min-width: 1300px) {
     .home-logo {
       gap: 52px;
-      img {
+
+      .logo-img {
         width: 495px;
         height: 152px;
       }
       .input-search {
-
         input {
           height: 73px;
           padding: $padding-large;
@@ -69,4 +74,3 @@ section {
     }
   }
 }
-
