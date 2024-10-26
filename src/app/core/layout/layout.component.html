@@ -1,7 +1,13 @@
 <main>
-  <app-header></app-header>
-
-  <div>
-    <router-outlet></router-outlet>
+  <div class="background">
+    <img class="pokeball-1 pokeball-img" ngSrc="assets/pokeball-icon.png" width="172" height="172" alt="PokeDex Logo" />
+    <img class="pokeball-2 pokeball-img" ngSrc="assets/pokeball-icon.png" width="172" height="172" />
+    <img class="pokeball-3 pokeball-img" ngSrc="assets/pokeball-icon.png" width="172" height="172" />
   </div>
+  <section>
+    <app-header></app-header>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
 </main>

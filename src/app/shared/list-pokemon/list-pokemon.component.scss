@@ -1,0 +1,12 @@
+div {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media screen and (min-width: 1300px) {
+  div {
+    gap: 34px;
+  }
+}

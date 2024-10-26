@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kumbh+Sans:wght@100..900&display=swap');
 
-@mixin text-default($font-size) {
+@mixin text-default($font-size, $font-weight) {
   font-family: Kumbh Sans;
   font-size: $font-size;
-  font-weight: 400;
+  font-weight: $font-weight;
   line-height: 16.12px;
 }
 
-@mixin text-span() {
+@mixin text-span($font-size, $font-weight) {
   font-family: Inter;
-  font-size: 9px;
-  font-weight: 500;
+  font-size: $font-size;
+  font-weight: $font-weight;
   line-height: 10.89px;
 }
 @mixin display-colu() {

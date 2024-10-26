@@ -1,4 +1,4 @@
-@import '../../styles/main.scss';
+@import '../../styles/main';
 
 section {
   max-width: 1100px;
@@ -9,17 +9,64 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 52px;
+    gap: 32px;
 
     .input-search {
       display: inline-flex;
       width: 100%;
       gap: 12px;
+      margin-bottom: 34px;
 
       input {
         width: 100%;
-        padding: $large-padding;
+        height: 48px;
+        padding: $padding-semi-medium;
+        border-radius: $small-border-radius;
+        @include text-default(18px, 400);
+        color: $text-color-placeholder;
+        box-shadow: 0px 4px 18.5px 2px #00000040;
+
+        &:focus-visible {
+          outline-color: $accent-color;
+        }
+      }
+
+      button {
+        padding: $padding-medium;
+        border-radius: $small-border-radius;
+        background-color: $accent-color;
+        box-shadow: 0px 4px 18.5px 2px #00000040;
+
+        i {
+          font-size: 18px;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1300px) {
+    .home-logo {
+      gap: 52px;
+      img {
+        width: 495px;
+        height: 152px;
+      }
+      .input-search {
+
+        input {
+          height: 73px;
+          padding: $padding-large;
+          @include text-default(20px, 400);
+        }
+        button {
+          padding: $padding-medium-large;
+          i {
+            font-size: 32px;
+            color: $primary-color;
+          }
+        }
       }
     }
   }
 }
+
