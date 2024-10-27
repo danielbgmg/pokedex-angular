@@ -24,7 +24,7 @@ export class ListPokemonComponent implements OnInit {
       .pipe(switchMap((resp) => forkJoin(resp.results.map((pokemon) => this._pokemonRest.getPokemon(pokemon.url)))))
       .subscribe((resp: IPokemonInfo[]) => {
         this.pokemonsInfo = this.capitalizeName(resp);
-        console.log(this.pokemonsInfo[0].types);
+        console.log(this.pokemonsInfo[0].sprites);
       });
   }
   capitalizeName(pokemons: IPokemonInfo[]): IPokemonInfo[] {

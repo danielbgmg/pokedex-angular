@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PokemonRestService {
-  private url = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0';
-  // private url = 'https://pokeapi.co/api/v2/pokemon/1';
+  private url = 'https://pokeapi.co/api/v2/pokemon?limit=150&offset=0';
 
   constructor(private _http: HttpClient) {}
 

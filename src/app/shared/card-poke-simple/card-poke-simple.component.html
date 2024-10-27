@@ -2,7 +2,7 @@
   <div class="card-info">
     <ul class="types">
       <li *ngFor="let types of pokemonTypes">
-        <span class="card-type">{{ types.type.name }}</span>
+        <span class="card-type" [ngClass]="types.type.name">{{ types.type.name }}</span>
       </li>
     </ul>
     <div class="types"></div>
@@ -15,8 +15,8 @@
     <div>
       <span id="id-poke">#001</span>
     </div>
-    <div class="img-pokemon">
-      <img ngSrc="assets/bulba.png" width="120" height="120" alt="Bulbasaur" />
+    <div class="img-pokemon" *ngIf="pokemonImage">
+      <img [ngSrc]="pokemonImage" width="120" height="120" alt="Bulbasaur" />
     </div>
   </div>
 </div>

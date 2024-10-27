@@ -11,21 +11,20 @@ main {
     z-index: 3;
   }
   .background {
-
     .pokeball-img {
       position: absolute;
     }
     .pokeball-1 {
-      left: -19%;
-      top: -1%;
+      left: -70px;
+      top: -25px;
     }
     .pokeball-2 {
-      right: 21%;
-      top: -5%;
+      right: 50px;
+      top: -95px;
     }
     .pokeball-3 {
-      right: -9%;
-      top: 8%;
+      right: -105px;
+      top: 210px;
     }
 
     @media screen and (min-width: 1300px) {
@@ -34,16 +33,16 @@ main {
         height: 412px;
       }
       .pokeball-1 {
-        left: -11%;
-        top: -4%;
+        left: -125px;
+        top: -85px;
       }
       .pokeball-2 {
-        right: 24%;
-        top: -23%;
+        right: 140px;
+        top: -240px;
       }
       .pokeball-3 {
-        right: -8%;
-        top: 22%;
+        right: -170px;
+        top: 300px;
       }
     }
   }
