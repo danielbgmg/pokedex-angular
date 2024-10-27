@@ -1,10 +1,4 @@
 <div>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
-  <app-card-poke-simple></app-card-poke-simple>
+  <app-card-poke-simple *ngFor="let pokemon of pokemonsInfo" [pokemonName]="pokemon.name" [pokemonTypes]="pokemon.types">
+  </app-card-poke-simple>
 </div>
