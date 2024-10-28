@@ -1,8 +1,10 @@
 <div>
   <app-card-poke-simple
     *ngFor="let pokemon of pokemonsInfo"
+    [pokemonId]="pokemon.id"
     [pokemonName]="pokemon.name"
     [pokemonTypes]="pokemon.types"
-    [pokemonImage]="pokemon.sprites.front_default">
+    [pokemonImage]="pokemon.sprites.front_default"
+    [pokemonDesc]="pokemon.description">
   </app-card-poke-simple>
 </div>

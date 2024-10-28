@@ -1,4 +1,5 @@
 export interface IPokemonInfo {
+  id: string;
   name: string;
   sprites: {
     front_default: string;
@@ -46,4 +47,6 @@ export interface IPokemonInfo {
       name: string;
     };
   }[];
+  description?: string;
+  imgPoke: string;
 }

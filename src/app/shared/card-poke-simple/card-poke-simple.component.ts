@@ -7,7 +7,9 @@ import { IPokemonInfo } from '../models/pokemons-info';
   styleUrl: './card-poke-simple.component.scss',
 })
 export class CardPokeSimpleComponent {
+  @Input() pokemonId?: string;
   @Input() pokemonName?: string;
   @Input() pokemonImage?: string;
   @Input() pokemonTypes?: { type: { name: string } }[];
+  @Input() pokemonDesc?: string;
 }
