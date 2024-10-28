@@ -1,0 +1,66 @@
+<div>
+  <section class="pokemon-about">
+    <div></div>
+    <div>
+      <div>
+        <div>
+          <span id="id-poke">#{{ pokemonId }}</span>
+        </div>
+        <h1>{{ pokemonName }}</h1>
+        <ul class="types">
+          <li *ngFor="let types of pokemonTypes">
+            <span class="card-type" [ngClass]="types.type.name">{{ types.type.name }}</span>
+          </li>
+        </ul>
+        <p class="poke-desc">{{ pokemonDesc }}</p>
+      </div>
+      <div>
+        <div>
+          <span>Height</span>
+          <span>0.7m</span>
+        </div>
+        <div>
+          <span>Weight</span>
+          <span>0.7m</span>
+        </div>
+      </div>
+      <div>
+        <h2>Stats</h2>
+        <ul>
+          <li>
+            <span>HP</span>
+            <span>47</span>
+          </li>
+          <li>
+            <span>DEF</span>
+            <span>47</span>
+          </li>
+          <li>
+            <span>SpD</span>
+            <span>47</span>
+          </li>
+          <li>
+            <span>ATK</span>
+            <span>47</span>
+          </li>
+          <li>
+            <span>SpA</span>
+            <span>47</span>
+          </li>
+          <li>
+            <span>SPD</span>
+            <span>47</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2>Abilities</h2>
+        <ul>
+          <li>Overgrow</li>
+          <li>Chlorophyll</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="pokemon-evolution"></section>
+</div>

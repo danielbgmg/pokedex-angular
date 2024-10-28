@@ -1,28 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { PokemonRestService } from './../service/pokemon-rest.service';
+import { Injectable } from '@angular/core';
+import { PokemonRestService } from './pokemon-rest.service';
 import { IPokemonInfo } from '../models/pokemons-info';
-import { forkJoin, map, of, switchMap, tap } from 'rxjs';
 import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
+import { forkJoin, map, of, switchMap, tap } from 'rxjs';
 
-@Component({
-  selector: 'app-list-pokemon',
-  templateUrl: './list-pokemon.component.html',
-  styleUrl: './list-pokemon.component.scss',
+@Injectable({
+  providedIn: 'root',
 })
-export class ListPokemonComponent implements OnInit {
-  pokemonsInfo: IPokemonInfo[] = [];
-  // pokemonInfoDesc: IPokemonInfoDesc[] = [];
-
+export class PokemonInfoService {
   constructor(private _pokemonRest: PokemonRestService) {}
-
-  ngOnInit(): void {
-    this.loadAll();
-    this.getPokemon();
-  }
-
-  getPokemon() {
-    this._pokemonRest.getPokemon;
-  }
+  pokemonsInfo: IPokemonInfo[] = [];
+  pokemonInfoDesc: IPokemonInfoDesc[] = [];
 
   loadAll(): void {
     this._pokemonRest
@@ -50,10 +38,11 @@ export class ListPokemonComponent implements OnInit {
           ),
         ),
       )
-      .subscribe((resp) => {
-        this.pokemonsInfo = resp.map((resp) => this.formatPokemonInfo(resp));
-        console.log(this.pokemonsInfo[0].id);
-      });
+      .subscribe((resp) => resp);
+    // .subscribe((resp) => {
+    //   this.pokemonsInfo = resp.map((resp) => this.formatPokemonInfo(resp));
+    //   console.log(this.pokemonsInfo[0].id);
+    // });
   }
   formatPokemonInfo(pokemon: IPokemonInfo): IPokemonInfo {
     let idFormat = pokemon.id;
