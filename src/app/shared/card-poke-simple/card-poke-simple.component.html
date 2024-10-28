@@ -9,7 +9,8 @@
 
     <h1>{{ pokemonName }}</h1>
     <p class="poke-desc">{{ pokemonDesc }}</p>
-    <button>Know More</button>
+    <!-- Tem que colocar a / para indicar como um caminho absoluto -->
+    <button [routerLink]="['/about', pokemonId]">Know More</button>
   </div>
   <div class="card-img">
     <div>

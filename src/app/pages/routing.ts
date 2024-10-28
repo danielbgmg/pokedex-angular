@@ -6,7 +6,7 @@ const PagesRouting: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'about',
+    path: 'about/:id',
     loadChildren: () => import('./about-pokemon/about-pokemon.module').then((m) => m.AboutPokemonModule),
   },
 ];
