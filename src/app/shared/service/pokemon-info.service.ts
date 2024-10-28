@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PokemonRestService } from './pokemon-rest.service';
 import { IPokemonInfo } from '../models/pokemons-info';
 import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
-import { forkJoin, map, of, switchMap, tap } from 'rxjs';
+import { forkJoin, map, Observable, of, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,38 +12,32 @@ export class PokemonInfoService {
   pokemonsInfo: IPokemonInfo[] = [];
   pokemonInfoDesc: IPokemonInfoDesc[] = [];
 
-  loadAll(): void {
-    this._pokemonRest
-      .getAll()
-      .pipe(
-        map((resp) => resp.results.map((urls) => this.getId(urls.url))),
-        switchMap((ids) =>
-          forkJoin(
-            ids.map((id) =>
-              forkJoin({
-                id: of(id),
-                pokemon: this._pokemonRest.getPokemon(id),
-                descPokemon: this._pokemonRest.getDescPokemon(id),
-              }).pipe(
-                map(({ pokemon, descPokemon, id }) => {
-                  return {
-                    ...pokemon,
-                    //Usou Shorthand: id: id,
-                    id,
-                    description: descPokemon.flavor_text_entries[0].flavor_text,
-                  };
-                }),
-              ),
+  loadAll(): Observable<IPokemonInfo[]> {
+    return this._pokemonRest.getAll().pipe(
+      map((resp) => resp.results.map((urls) => this.getId(urls.url))),
+      switchMap((ids) =>
+        forkJoin(
+          ids.map((id) =>
+            forkJoin({
+              id: of(id),
+              pokemon: this._pokemonRest.getPokemon(id),
+              descPokemon: this._pokemonRest.getDescPokemon(id),
+            }).pipe(
+              map(({ pokemon, descPokemon, id }) => {
+                return {
+                  ...pokemon,
+                  //Usou Shorthand: id: id,
+                  id,
+                  description: descPokemon.flavor_text_entries[0].flavor_text,
+                };
+              }),
             ),
           ),
         ),
-      )
-      .subscribe((resp) => resp);
-    // .subscribe((resp) => {
-    //   this.pokemonsInfo = resp.map((resp) => this.formatPokemonInfo(resp));
-    //   console.log(this.pokemonsInfo[0].id);
-    // });
+      ),
+    );
   }
+
   formatPokemonInfo(pokemon: IPokemonInfo): IPokemonInfo {
     let idFormat = pokemon.id;
     while (idFormat.length < 3) {

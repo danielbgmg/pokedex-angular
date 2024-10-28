@@ -3,6 +3,7 @@ import { PokemonRestService } from './../service/pokemon-rest.service';
 import { IPokemonInfo } from '../models/pokemons-info';
 import { forkJoin, map, of, switchMap, tap } from 'rxjs';
 import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
+import { PokemonInfoService } from '../service/pokemon-info.service';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -11,64 +12,34 @@ import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
 })
 export class ListPokemonComponent implements OnInit {
   pokemonsInfo: IPokemonInfo[] = [];
-  // pokemonInfoDesc: IPokemonInfoDesc[] = [];
 
-  constructor(private _pokemonRest: PokemonRestService) {}
+  constructor(private _pokemonRest: PokemonInfoService) {}
 
   ngOnInit(): void {
-    this.loadAll();
     this.getPokemon();
   }
 
   getPokemon() {
-    this._pokemonRest.getPokemon;
+    this._pokemonRest.loadAll().subscribe({
+      next: (pokemon) => {
+        console.log(pokemon[0].sprites.other['official-artwork'].front_default);
+        this.pokemonsInfo = this.formatPokemonInfo(pokemon);
+      },
+    });
   }
 
-  loadAll(): void {
-    this._pokemonRest
-      .getAll()
-      .pipe(
-        map((resp) => resp.results.map((urls) => this.getId(urls.url))),
-        switchMap((ids) =>
-          forkJoin(
-            ids.map((id) =>
-              forkJoin({
-                id: of(id),
-                pokemon: this._pokemonRest.getPokemon(id),
-                descPokemon: this._pokemonRest.getDescPokemon(id),
-              }).pipe(
-                map(({ pokemon, descPokemon, id }) => {
-                  return {
-                    ...pokemon,
-                    //Usou Shorthand: id: id,
-                    id,
-                    description: descPokemon.flavor_text_entries[0].flavor_text,
-                  };
-                }),
-              ),
-            ),
-          ),
-        ),
-      )
-      .subscribe((resp) => {
-        this.pokemonsInfo = resp.map((resp) => this.formatPokemonInfo(resp));
-        console.log(this.pokemonsInfo[0].id);
-      });
-  }
-  formatPokemonInfo(pokemon: IPokemonInfo): IPokemonInfo {
-    let idFormat = pokemon.id;
-    while (idFormat.length < 3) {
-      idFormat = '0' + idFormat;
-    }
-    return {
-      ...pokemon,
-      id: idFormat,
-      name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1).toLowerCase(),
-      description: pokemon.description?.replace(/[\n\f]/g, ''),
-    };
-  }
-  getId(url: string): string {
-    const id = url.replace(/\/$/, '').split('/').pop();
-    return id!;
+  formatPokemonInfo(pokemon: IPokemonInfo[]): IPokemonInfo[] {
+    return pokemon.map((poke) => {
+      let idFormat = poke.id;
+      while (idFormat.length < 3) {
+        idFormat = '0' + idFormat;
+      }
+      return {
+        ...poke,
+        id: idFormat,
+        name: poke.name.charAt(0).toUpperCase() + poke.name.slice(1).toLowerCase(),
+        description: poke.description?.replace(/[\n\f]/g, ''),
+      };
+    });
   }
 }
