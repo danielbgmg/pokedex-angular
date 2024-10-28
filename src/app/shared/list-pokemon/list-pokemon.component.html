@@ -4,7 +4,8 @@
     [pokemonId]="pokemon.id"
     [pokemonName]="pokemon.name"
     [pokemonTypes]="pokemon.types"
-    [pokemonImage]="pokemon.sprites.front_default"
+    [pokemonImage]="pokemon.sprites.other['official-artwork'].front_default"
     [pokemonDesc]="pokemon.description">
   </app-card-poke-simple>
 </div>
+<!-- [pokemonImage]="pokemon.sprites.other?.official_artwork?.front_default" -->
