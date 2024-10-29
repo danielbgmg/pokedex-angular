@@ -1,5 +1,6 @@
 export interface IPokemonInfo {
   id: string;
+  idFormat: string;
   name: string;
   sprites: {
     other: {

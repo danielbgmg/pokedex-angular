@@ -4,6 +4,7 @@ import { IPokemonInfo } from '../models/pokemons-info';
 import { forkJoin, map, of, switchMap, tap } from 'rxjs';
 import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
 import { PokemonInfoService } from '../service/pokemon-info.service';
+import { FormatPokemonService } from '../service/format-pokemon.service';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -13,7 +14,10 @@ import { PokemonInfoService } from '../service/pokemon-info.service';
 export class ListPokemonComponent implements OnInit {
   pokemonsInfo: IPokemonInfo[] = [];
 
-  constructor(private _pokemonRest: PokemonInfoService) {}
+  constructor(
+    private _pokemonRest: PokemonInfoService,
+    private _formatPokemon: FormatPokemonService,
+  ) {}
 
   ngOnInit(): void {
     this.getPokemon();
@@ -22,24 +26,8 @@ export class ListPokemonComponent implements OnInit {
   getPokemon() {
     this._pokemonRest.loadAll().subscribe({
       next: (pokemon) => {
-        console.log(pokemon[0].sprites.other['official-artwork'].front_default);
-        this.pokemonsInfo = this.formatPokemonInfo(pokemon);
+        this.pokemonsInfo = this._formatPokemon.formatPokemonInfo(pokemon);
       },
-    });
-  }
-
-  formatPokemonInfo(pokemon: IPokemonInfo[]): IPokemonInfo[] {
-    return pokemon.map((poke) => {
-      let idFormat = poke.id;
-      while (idFormat.length < 3) {
-        idFormat = '0' + idFormat;
-      }
-      return {
-        ...poke,
-        id: idFormat,
-        name: poke.name.charAt(0).toUpperCase() + poke.name.slice(1).toLowerCase(),
-        description: poke.description?.replace(/[\n\f]/g, ''),
-      };
     });
   }
 }

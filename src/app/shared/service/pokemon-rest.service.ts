@@ -9,7 +9,7 @@ import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
   providedIn: 'root',
 })
 export class PokemonRestService {
-  private url = 'https://pokeapi.co/api/v2/pokemon?limit=30&offset=0';
+  private url = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0';
   private urlPokemon = 'https://pokeapi.co/api/v2/pokemon/';
   private urlDescPokemon = 'https://pokeapi.co/api/v2/pokemon-species/';
 
