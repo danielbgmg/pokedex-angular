@@ -18,11 +18,7 @@ export class PokemonInfoService {
       switchMap((ids) =>
         forkJoin(
           ids.map((id) =>
-            forkJoin({
-              id: of(id),
-              pokemon: this._pokemonRest.getPokemon(id),
-              descPokemon: this._pokemonRest.getDescPokemon(id),
-            }).pipe(
+            this.getPokemonById(id).pipe(
               map(({ pokemon, descPokemon, id }) => {
                 return {
                   ...pokemon,
@@ -36,6 +32,14 @@ export class PokemonInfoService {
         ),
       ),
     );
+  }
+
+  getPokemonById(id: string): Observable<any> {
+    return forkJoin({
+      id: of(id),
+      pokemon: this._pokemonRest.getPokemon(id),
+      descPokemon: this._pokemonRest.getDescPokemon(id),
+    });
   }
 
   formatPokemonInfo(pokemon: IPokemonInfo): IPokemonInfo {
