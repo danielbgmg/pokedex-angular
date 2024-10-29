@@ -2,10 +2,10 @@
   <app-card-poke-simple
     *ngFor="let pokemon of pokemonsInfo"
     [pokemonId]="pokemon.id"
+    [pokemonIdFormat]="pokemon.idFormat"
     [pokemonName]="pokemon.name"
     [pokemonTypes]="pokemon.types"
     [pokemonImage]="pokemon.sprites.other['official-artwork'].front_default"
     [pokemonDesc]="pokemon.description">
   </app-card-poke-simple>
 </div>
-<!-- [pokemonImage]="pokemon.sprites.other?.official_artwork?.front_default" -->
