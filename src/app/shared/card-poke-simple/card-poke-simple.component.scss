@@ -7,7 +7,7 @@
   height: 200px;
   background-color: $background-color-card;
   padding: $padding-medium-large;
-  border-radius: $medium-border-radius;
+  border-radius: $borderRadius-medium;
   box-shadow: 0px 21px 25.9px -14px #0000001a;
 
   .types {
@@ -16,7 +16,7 @@
     .card-type {
       @include text-span(10px, 500);
       padding: $padding-small;
-      border-radius: $large-border-radius;
+      border-radius: $borderRadius-large;
     }
   }
   .card-info,
@@ -24,7 +24,7 @@
     @include display-colu();
 
     h1 {
-      @include text-default(27px, 700);
+      @include text-default(27px, 700, 33.49px);
     }
   }
 
@@ -32,92 +32,47 @@
     align-items: flex-end;
 
     #id-poke {
-      @include text-default(15px, 700);
+      @include text-default(15px, 700, 13.31px);
     }
   }
 
   .poke-desc {
-    @include text-default(13px, 400);
+    @include text-default(13px, 400, 16.12px);
     width: 168px;
   }
 
   button {
     @include text-span(12px, 700);
     padding: $padding-semi-medium;
-    border-radius: $large-border-radius;
+    border-radius: $borderRadius-large;
     width: fit-content;
     background-color: $grass;
   }
 
-  .normal {
-    background-color: #a8a77a;
-  }
+  $types: (
+    normal: #a8a77a,
+    fire: #ee8130,
+    water: #6390f0,
+    electric: #f7d02c,
+    grass: #7ac74c,
+    ice: #96d9d6,
+    fighting: #c22e28,
+    poison: #a33ea1,
+    ground: #e2bf65,
+    flying: #a98ff3,
+    psychic: #f95587,
+    bug: #a6b91a,
+    rock: #b6a136,
+    ghost: #735797,
+    dragon: #6f35fc,
+    dark: #705746,
+    steel: #b7b7ce,
+    fairy: #d685ad,
+  );
 
-  .fire {
-    background-color: #ee8130;
-  }
-
-  .water {
-    background-color: #6390f0;
-  }
-
-  .electric {
-    background-color: #f7d02c;
-  }
-
-  .grass {
-    background-color: #7ac74c;
-  }
-
-  .ice {
-    background-color: #96d9d6;
-  }
-
-  .fighting {
-    background-color: #c22e28;
-  }
-
-  .poison {
-    background-color: #a33ea1;
-  }
-
-  .ground {
-    background-color: #e2bf65;
-  }
-
-  .flying {
-    background-color: #a98ff3;
-  }
-
-  .psychic {
-    background-color: #f95587;
-  }
-
-  .bug {
-    background-color: #a6b91a;
-  }
-
-  .rock {
-    background-color: #b6a136;
-  }
-
-  .ghost {
-    background-color: #735797;
-  }
-
-  .dragon {
-    background-color: #6f35fc;
-  }
-
-  .dark {
-    background-color: #705746;
-  }
-
-  .steel {
-    background-color: #b7b7ce;
-  }
-
-  .fairy {
-    background-color: #d685ad;
+  @each $type-name, $type-color in $types {
+    .#{$type-name} {
+      background-color: $type-color;
+    }
   }
 }
