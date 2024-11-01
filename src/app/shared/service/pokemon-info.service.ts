@@ -47,6 +47,14 @@ export class PokemonInfoService {
     return this.pokemonsInfo.find((pokemon) => pokemon.id === id);
   }
 
+  getFilterPokemonByName(name: string): any {
+    // return this.pokemonsInfo.filter((pokemon) => pokemon.name == name )
+    const pokemon = this.pokemonsInfo.find((pokemon) => pokemon.name == name);
+    const pokeUrl = pokemon ? pokemon.sprites.other['official-artwork'].front_default : '';
+
+    return pokeUrl;
+  }
+
   getListPokemonById(id: string): Observable<any> {
     return forkJoin({
       id: of(id),

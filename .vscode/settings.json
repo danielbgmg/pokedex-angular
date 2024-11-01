@@ -6,5 +6,8 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "prettier.endOfLine": "auto"
+  "prettier.endOfLine": "auto",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }
