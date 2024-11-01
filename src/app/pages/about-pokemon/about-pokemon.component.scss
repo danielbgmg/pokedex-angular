@@ -1,0 +1,160 @@
+@import '../../styles/main.scss';
+
+:host {
+  .dex-about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    max-width: 1070px;
+    margin: 0 auto;
+
+    h2 {
+      @include text-default(22px, 700, 21.08px);
+      margin-bottom: 10px;
+    }
+  }
+  .pokemon-about {
+    background-color: $background-color-card;
+    padding: $padding-large;
+    border-radius: $borderRadius-medium;
+    @include display-colum-gap(20px);
+
+    .img-pokemon {
+      text-align: center;
+    }
+    .pokemon-infos {
+      @include display-colum-gap(15px);
+    }
+
+    .pokemon-info {
+      @include display-colum-gap(15px);
+
+      #id-poke {
+        @include text-default(15px, 700, 18.6px);
+      }
+      h1 {
+        @include text-default(50px, 700, 49.61px);
+      }
+      .types {
+        display: inline-flex;
+        gap: 8px;
+        .card-type {
+          @include text-span(12px, 500);
+          padding: $padding-small;
+          border-radius: $borderRadius-large;
+        }
+      }
+      .poke-desc {
+        @include text-default(18px, 400, 22.32px);
+      }
+    }
+    .pokemon-measurements {
+      display: inline-flex;
+      gap: 17px;
+      width: 100%;
+      border-radius: $borderRadius-small;
+    }
+    .basic-info {
+      display: inline-flex;
+      justify-content: space-between;
+      background-color: $primary-color;
+      border-radius: $borderRadius-small;
+      padding: 8px 6px;
+      flex-grow: 1;
+      span:first-child {
+        @include text-default(17px, 700, 21.08px);
+      }
+      span:last-child {
+        @include text-default(17px, 400, 21.08px);
+      }
+    }
+
+    .pokemon-stats {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 4;
+        column-gap: 17px;
+        row-gap: 9px;
+      }
+    }
+    .pokemon-abilities {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 17px;
+        row-gap: 9px;
+
+        li {
+          justify-content: center;
+          @include text-default(17px, 700, 21.08px);
+        }
+      }
+    }
+    $types: (
+      normal: #a8a77a,
+      fire: #ee8130,
+      water: #6390f0,
+      electric: #f7d02c,
+      grass: #7ac74c,
+      ice: #96d9d6,
+      fighting: #c22e28,
+      poison: #a33ea1,
+      ground: #e2bf65,
+      flying: #a98ff3,
+      psychic: #f95587,
+      bug: #a6b91a,
+      rock: #b6a136,
+      ghost: #735797,
+      dragon: #6f35fc,
+      dark: #705746,
+      steel: #b7b7ce,
+      fairy: #d685ad,
+    );
+
+    @each $type-name, $type-color in $types {
+      .#{$type-name} {
+        background-color: $type-color;
+      }
+    }
+
+    $stats: (
+      HP: #e63946,
+      ATK: #f4a261,
+      DEF: #e9c46a,
+      SpA: #2a9d8f,
+      SpD: #90be6d,
+      SPD: #f28482,
+    );
+
+    @each $stat-name, $stat-color in $stats {
+      .#{$stat-name} {
+        background-color: $stat-color;
+      }
+    }
+  }
+  .pokemon-evolution {
+    @include display-colum-gap(20px);
+    width: 100%;
+
+    .evolutions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  @media screen and (min-width: 1300px) {
+    .pokemon-about {
+      flex-direction: row;
+      gap: 100px;
+      padding: 24px 74px;
+
+      img {
+        width: 430px;
+        height: 430px;
+      }
+    }
+  }
+}
