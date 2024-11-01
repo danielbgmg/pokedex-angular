@@ -1,12 +1,14 @@
-<div>
+<div class="dex-about">
   <section class="pokemon-about">
-    <div></div>
-    <div>
-      <div>
+    <div class="img-pokemon" *ngIf="pokemonImage">
+      <img [ngSrc]="pokemonImage" width="200" height="200" alt="Bulbasaur" priority />
+    </div>
+    <div class="pokemon-infos">
+      <div class="pokemon-info">
         <div>
-          <span id="id-poke">#{{ pokemonId }}</span>
+          <span id="id-poke">#{{ pokemonIdFormat }}</span>
+          <h1>{{ pokemonName }}</h1>
         </div>
-        <h1>{{ pokemonName }}</h1>
         <ul class="types">
           <li *ngFor="let types of pokemonTypes">
             <span class="card-type" [ngClass]="types.type.name">{{ types.type.name }}</span>
@@ -14,53 +16,49 @@
         </ul>
         <p class="poke-desc">{{ pokemonDesc }}</p>
       </div>
-      <div>
-        <div>
+      <div class="pokemon-measurements">
+        <div class="basic-info">
           <span>Height</span>
           <span>0.7m</span>
         </div>
-        <div>
+        <div class="basic-info">
           <span>Weight</span>
           <span>0.7m</span>
         </div>
       </div>
-      <div>
+      <div class="pokemon-stats">
         <h2>Stats</h2>
         <ul>
-          <li>
-            <span>HP</span>
-            <span>47</span>
-          </li>
-          <li>
-            <span>DEF</span>
-            <span>47</span>
-          </li>
-          <li>
-            <span>SpD</span>
-            <span>47</span>
-          </li>
-          <li>
-            <span>ATK</span>
-            <span>47</span>
-          </li>
-          <li>
-            <span>SpA</span>
-            <span>47</span>
-          </li>
-          <li>
-            <span>SPD</span>
-            <span>47</span>
+          <li class="basic-info" [ngClass]="stat.name" *ngFor="let stat of pokemonStats.stats">
+            <span>{{ stat.name }}</span>
+            <span>{{ stat.value }}</span>
           </li>
         </ul>
       </div>
-      <div>
+      <div class="pokemon-abilities">
         <h2>Abilities</h2>
         <ul>
-          <li>Overgrow</li>
-          <li>Chlorophyll</li>
+          <li class="basic-info" *ngFor="let abilites of pokemonAbilites">
+            {{ abilites.ability?.name }}
+          </li>
         </ul>
       </div>
     </div>
   </section>
-  <section class="pokemon-evolution"></section>
+  <section class="pokemon-evolution">
+    <h2>Evolution</h2>
+    <div class="evolutions">
+      <div>
+        <img ngSrc="assets/bulba.png" width="70" height="70" alt="bulba" />
+      </div>
+      <i class="fa-solid fa-arrow-right"></i>
+      <div>
+        <img ngSrc="assets/bulba.png" width="70" height="70" alt="bulba" />
+      </div>
+      <i class="fa-solid fa-arrow-right"></i>
+      <div>
+        <img ngSrc="assets/bulba.png" width="70" height="70" alt="bulba" />
+      </div>
+    </div>
+  </section>
 </div>
