@@ -20,7 +20,7 @@ export class FormatPokemonService {
         // id: poke.id.padStart(3, '0'),
         idFormat: poke.id.padStart(3, '0'),
         name: poke.name.charAt(0).toUpperCase() + poke.name.slice(1).toLowerCase(),
-        description: poke.description?.replace(/[\n\f]/g, ''),
+        description: poke.description?.replace(/[\n\f]/g, ' '),
       };
     });
   }

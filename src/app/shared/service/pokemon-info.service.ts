@@ -18,27 +18,40 @@ export class PokemonInfoService {
       switchMap((ids) =>
         forkJoin(
           ids.map((id) =>
-            this.getPokemonById(id).pipe(
+            this.getListPokemonById(id).pipe(
               map(({ pokemon, descPokemon, id }) => {
                 return {
                   ...pokemon,
                   //Usou Shorthand: id: id,
                   id,
                   description: descPokemon.flavor_text_entries[0].flavor_text,
+                  evolutionChain: descPokemon.evolution_chain.url,
                 };
               }),
             ),
           ),
         ),
       ),
+      tap((pokes) => {
+        this.pokemonsInfo = pokes;
+      }),
     );
   }
 
-  getPokemonById(id: string): Observable<any> {
+  getPokemonList(): any {
+    return this.pokemonsInfo;
+    // return this.pokemonsInfo.find((pokemon) => pokemon.name == name);
+  }
+
+  getFilterPokemonById(id: string): any {
+    return this.pokemonsInfo.find((pokemon) => pokemon.id === id);
+  }
+
+  getListPokemonById(id: string): Observable<any> {
     return forkJoin({
       id: of(id),
       pokemon: this._pokemonRest.getPokemon(id),
-      descPokemon: this._pokemonRest.getDescPokemon(id),
+      descPokemon: this._pokemonRest.getSpeciePokemon(id),
     });
   }
 

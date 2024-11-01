@@ -4,6 +4,7 @@ import { IPokemonResponse } from '../models/pokemon-response';
 import { IPokemonInfo } from '../models/pokemons-info';
 import { Observable } from 'rxjs';
 import { IPokemonInfoDesc } from '../models/pokemon-info-desc';
+import { IPokemonEvolution } from '../models/pokemon-evolution';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,10 @@ export class PokemonRestService {
   getPokemon(id: string): Observable<IPokemonInfo> {
     return this._http.get<IPokemonInfo>(this.urlPokemon + id);
   }
-  getDescPokemon(id: string): Observable<IPokemonInfoDesc> {
+  getSpeciePokemon(id: string): Observable<IPokemonInfoDesc> {
     return this._http.get<IPokemonInfoDesc>(this.urlDescPokemon + id);
+  }
+  getEvolution(url: string): Observable<IPokemonEvolution> {
+    return this._http.get<IPokemonEvolution>(url);
   }
 }
