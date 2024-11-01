@@ -1,20 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kumbh+Sans:wght@100..900&display=swap');
 
-@mixin text-default($font-size, $font-weight) {
+@mixin h1() {
+  font-family: Kumbh Sans;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 49.61px;
+}
+@mixin text-default($font-size, $font-weight, $line-hight) {
   font-family: Kumbh Sans;
   font-size: $font-size;
   font-weight: $font-weight;
-  line-height: 16.12px;
+  line-height: $line-hight;
 }
 
 @mixin text-span($font-size, $font-weight) {
   font-family: Inter;
   font-size: $font-size;
   font-weight: $font-weight;
-  line-height: 10.89px;
 }
 @mixin display-colu() {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@mixin display-colum-gap($gap) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
 }
