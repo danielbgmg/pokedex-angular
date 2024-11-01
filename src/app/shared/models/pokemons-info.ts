@@ -2,6 +2,11 @@ export interface IPokemonInfo {
   id: string;
   idFormat: string;
   name: string;
+  abilities: {
+    ability: {
+      name: string;
+    };
+  }[];
   sprites: {
     other: {
       //Forma correta de tipar uma propiedade que tenha -
@@ -10,7 +15,7 @@ export interface IPokemonInfo {
       };
     };
   };
-  stats?: [
+  stats: [
     {
       base_stat: number;
       stat: {
@@ -53,6 +58,6 @@ export interface IPokemonInfo {
       name: string;
     };
   }[];
-  description?: string;
-  imgPoke: string;
+  evolutionChain: any;
+  description: string;
 }
