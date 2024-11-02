@@ -4,8 +4,7 @@
   display: inline-flex;
   justify-content: space-between;
   width: 344px;
-  height: 200px;
-  background-color: $background-color-card;
+  background-color: var(--primary-color);
   padding: $padding-medium-large;
   border-radius: $borderRadius-medium;
   box-shadow: 0px 21px 25.9px -14px #0000001a;
@@ -22,6 +21,7 @@
   .card-info,
   .card-img {
     @include display-colu();
+    gap: 8px;
 
     h1 {
       @include text-default(27px, 700, 33.49px);
@@ -46,7 +46,8 @@
     padding: $padding-semi-medium;
     border-radius: $borderRadius-large;
     width: fit-content;
-    background-color: $grass;
+    background-color: var(--accent-color);
+    margin-top: 4px;
   }
 
   $types: (

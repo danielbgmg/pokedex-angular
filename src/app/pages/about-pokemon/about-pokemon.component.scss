@@ -16,7 +16,7 @@
     }
   }
   .pokemon-about {
-    background-color: $background-color-card;
+    background-color: var(--primary-color);
     padding: $padding-large;
     border-radius: $borderRadius-medium;
     @include display-colum-gap(20px);
@@ -59,7 +59,7 @@
     .basic-info {
       display: inline-flex;
       justify-content: space-between;
-      background-color: $primary-color;
+      background-color: var(--accent-color);
       border-radius: $borderRadius-small;
       padding: 8px 6px;
       flex-grow: 1;

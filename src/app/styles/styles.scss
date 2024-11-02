@@ -1,5 +1,13 @@
 @import './main.scss';
 
+:root {
+  @include light-mode-theme();
+}
+
+.dark-mode-theme {
+  @include dark-mode-theme();
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +20,7 @@ li {
 }
 
 body {
-  background-color: $primary-color;
+  background-color: var(--bg-color);
   height: 100vh;
 }
 
