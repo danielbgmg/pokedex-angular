@@ -1,11 +1,19 @@
 <div>
-  <app-card-poke-simple
-    *ngFor="let pokemon of pokemonsInfo"
-    [pokemonId]="pokemon.id"
-    [pokemonIdFormat]="pokemon.idFormat"
-    [pokemonName]="pokemon.name"
-    [pokemonTypes]="pokemon.types"
-    [pokemonImage]="pokemon.sprites.other['official-artwork'].front_default"
-    [pokemonDesc]="pokemon.description">
-  </app-card-poke-simple>
+  <div class="input-search">
+    <input type="text" placeholder="search eg, ditto or pikachu" #input (keyup)="getFilterPokemon(input.value)" />
+    <button>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  <div class="cards">
+    <app-card-poke-simple
+      *ngFor="let pokemon of pokemonListFilter"
+      [pokemonId]="pokemon.id"
+      [pokemonIdFormat]="pokemon.idFormat"
+      [pokemonName]="pokemon.name"
+      [pokemonTypes]="pokemon.types"
+      [pokemonImage]="pokemon.sprites.other['official-artwork'].front_default"
+      [pokemonDesc]="pokemon.description">
+    </app-card-poke-simple>
+  </div>
 </div>

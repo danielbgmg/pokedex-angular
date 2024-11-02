@@ -12,10 +12,10 @@ import { FormatPokemonService } from '../service/format-pokemon.service';
   styleUrl: './list-pokemon.component.scss',
 })
 export class ListPokemonComponent implements OnInit {
-  pokemonsInfo: IPokemonInfo[] = [];
-
+  pokemonsListAll: IPokemonInfo[] = [];
+  pokemonListFilter: IPokemonInfo[] = [];
   constructor(
-    private _pokemonRest: PokemonInfoService,
+    private _pokemonInfoRest: PokemonInfoService,
     private _formatPokemon: FormatPokemonService,
   ) {}
 
@@ -24,10 +24,15 @@ export class ListPokemonComponent implements OnInit {
   }
 
   getPokemon() {
-    this._pokemonRest.loadAll().subscribe({
+    this._pokemonInfoRest.loadAll().subscribe({
       next: (pokemon) => {
-        this.pokemonsInfo = this._formatPokemon.formatPokemonInfo(pokemon);
+        this.pokemonsListAll = this._formatPokemon.formatPokemonInfo(pokemon);
+        this.pokemonListFilter = this.pokemonsListAll;
       },
     });
+  }
+
+  getFilterPokemon(value: string) {
+    this.pokemonListFilter = this.pokemonsListAll.filter((poke) => poke.name.toLowerCase().includes(value.toLowerCase()));
   }
 }

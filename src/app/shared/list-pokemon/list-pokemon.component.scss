@@ -1,12 +1,69 @@
+@import '../../styles/main.scss';
+
 div {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  .input-search {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 34px;
+
+    input {
+      width: 100%;
+      height: 48px;
+      padding: $padding-semi-medium;
+      border-radius: $borderRadius-small;
+      @include text-default(18px, 400, 18.8px);
+
+      box-shadow: 0px 4px 18.5px 2px #00000040;
+      &::placeholder {
+        color: var(--text-color-placeholder);
+      }
+      &:focus-visible {
+        outline-color: var(--button);
+      }
+    }
+
+    button {
+      padding: $padding-medium;
+      border-radius: $borderRadius-small;
+      background-color: var(--button);
+      box-shadow: 0px 4px 18.5px 2px #00000040;
+
+      i {
+        font-size: 18px;
+        color: #fff;
+      }
+    }
+  }
+
+  .cards {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
 }
 
 @media screen and (min-width: 1300px) {
   div {
-    gap: 34px;
+    .input-search {
+      input {
+        height: 73px;
+        padding: $padding-large;
+        @include text-default(20px, 400, 24.8px);
+      }
+      button {
+        padding: $padding-medium-large;
+        i {
+          font-size: 32px;
+          color: #fff;
+        }
+      }
+    }
+
+    .cards {
+      gap: 34px;
+    }
   }
 }
