@@ -38,10 +38,24 @@ export class PokemonInfoService {
     );
   }
 
-  getPokemonList(): any {
-    return this.pokemonsInfo;
-    // return this.pokemonsInfo.find((pokemon) => pokemon.name == name);
+  getPokemonById(id: string): Observable<IPokemonInfo> {
+    return this.getListPokemonById(id).pipe(
+      map(({ pokemon, descPokemon, id }) => {
+        return {
+          ...pokemon,
+          //Usou Shorthand: id: id,
+          id,
+          description: descPokemon.flavor_text_entries[0].flavor_text,
+          evolutionChain: descPokemon.evolution_chain.url,
+        };
+      }),
+    );
   }
+
+  // getFilterList(name: string): IPokemonInfo[] {
+  //   console.log(this.pokemonsInfo)
+  //   return this.pokemonsInfo.filter((pokemon) => pokemon.name.toLowerCase().includes(name));
+  // }
 
   getFilterPokemonById(id: string): any {
     return this.pokemonsInfo.find((pokemon) => pokemon.id === id);
@@ -51,7 +65,6 @@ export class PokemonInfoService {
     // return this.pokemonsInfo.filter((pokemon) => pokemon.name == name )
     const pokemon = this.pokemonsInfo.find((pokemon) => pokemon.name == name);
     const pokeUrl = pokemon ? pokemon.sprites.other['official-artwork'].front_default : '';
-
     return pokeUrl;
   }
 
