@@ -3,7 +3,6 @@ main {
   position: relative;
   overflow-x: hidden;
   height: 100%;
-  background-color: $primary-color;
   padding: 0 27px 50px;
 
   section {
@@ -13,6 +12,7 @@ main {
   .background {
     .pokeball-img {
       position: absolute;
+      filter: var(--bg-color-pokeball);
     }
     .pokeball-1 {
       left: -70px;
