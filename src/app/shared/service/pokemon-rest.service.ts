@@ -10,7 +10,7 @@ import { IPokemonEvolutionRequest } from '../models/pokemon-evolution';
   providedIn: 'root',
 })
 export class PokemonRestService {
-  private url = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=0';
+  private url = 'https://pokeapi.co/api/v2/pokemon?limit=6&offset=0';
   private urlPokemon = 'https://pokeapi.co/api/v2/pokemon/';
   private urlDescPokemon = 'https://pokeapi.co/api/v2/pokemon-species/';
 
@@ -19,8 +19,8 @@ export class PokemonRestService {
   getAll() {
     return this._http.get<IPokemonResponse>(this.url);
   }
-  getPokemon(id: string): Observable<IPokemonInfo> {
-    return this._http.get<IPokemonInfo>(this.urlPokemon + id);
+  getPokemon(idOrName: string | number): Observable<IPokemonInfo> {
+    return this._http.get<IPokemonInfo>(this.urlPokemon + idOrName);
   }
   getSpeciePokemon(id: string): Observable<IPokemonInfoDesc> {
     return this._http.get<IPokemonInfoDesc>(this.urlDescPokemon + id);

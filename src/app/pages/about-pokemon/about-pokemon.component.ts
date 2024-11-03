@@ -2,7 +2,7 @@ import { Component, input, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonInfoService } from '../../shared/service/pokemon-info.service';
 import { IPokemonInfo } from '../../shared/models/pokemons-info';
-import { map, Observable, tap, of, first } from 'rxjs';
+import { map, Observable, tap, of, first, forkJoin } from 'rxjs';
 import { FormatPokemonService } from '../../shared/service/format-pokemon.service';
 import { IPokemonStats } from '../../shared/models/pokemon-stats';
 import { IPokemonAbility } from '../../shared/models/pokemon-ability';
@@ -34,6 +34,7 @@ export class AboutPokemonComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _pokemonInfoRest: PokemonInfoService,
     private _pokemonEvolution: PokemonEvolutionService,
+    private _pokemonRest: PokemonRestService,
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +45,18 @@ export class AboutPokemonComponent implements OnInit {
 
   getPokeInfo() {
     this.pokemonInfo = this._pokemonInfoRest.getFilterPokemonById(this.id);
+
+    if (this.pokemonInfo == undefined) {
+      this._pokemonInfoRest.getPokemonById(this.id).subscribe((poke) => {
+        this.pokemonInfo = poke;
+        this.processPokemonInfo();
+      });
+    } else {
+      this.processPokemonInfo();
+    }
+  }
+
+  processPokemonInfo() {
     this.pokemonInfo = this.formatPokemonInfo(this.pokemonInfo);
     this.pokemonImage = this.pokemonInfo.sprites?.other['official-artwork'].front_default;
     this.pokemonIdFormat = this.pokemonInfo.idFormat;
@@ -53,33 +66,37 @@ export class AboutPokemonComponent implements OnInit {
     this.pokemonStats = this.formatPokemonStats(this.pokemonInfo);
     this.pokemonAbilites = this.formatAbilitiesName(this.pokemonInfo);
     this.urlEvolution = this.pokemonInfo.evolutionChain;
+    console.log(this.urlEvolution);
   }
-
-  // getImageEvolution() {
-  //   this.pokemonEvolutionsName.
-  // }
 
   getEvolutionName() {
     this._pokemonEvolution.getPokemonEvolution(this.urlEvolution).subscribe({
       next: (poke) => {
-        this.pokemonEvolutionsName = this.formatPokemonEvolution(poke);
-        console.log(this.pokemonEvolutionsName);
+        this.formatPokemonEvolution(poke).subscribe((evolutionName) => {
+          this.pokemonEvolutionsName = evolutionName;
+        });
       },
     });
   }
-  formatPokemonEvolution(pokemon: IPokemonEvolutionRequest): IPokemonEvolution {
+
+  formatPokemonEvolution(pokemon: IPokemonEvolutionRequest): Observable<IPokemonEvolution> {
     const listNamePokemonsEvolution = [
       pokemon.chain.species.name,
       pokemon.chain.evolves_to[0].species.name,
       pokemon.chain.evolves_to[0].evolves_to[0].species.name,
     ];
-    const listPokemonUrl = listNamePokemonsEvolution.map((poke) => this._pokemonInfoRest.getFilterPokemonByName(poke));
-    console.log(listNamePokemonsEvolution);
-    return {
-      firstStage: listPokemonUrl[0],
-      secondStage: listPokemonUrl[1],
-      thirdStage: listPokemonUrl[2],
-    };
+    const request = listNamePokemonsEvolution.map((poke) => this._pokemonRest.getPokemon(poke));
+
+    return forkJoin(request).pipe(
+      map((pokemon) => {
+        const listPokemonUrlSprit = pokemon.map((poke) => poke.sprites.other['official-artwork'].front_default);
+        return {
+          firstStage: listPokemonUrlSprit[0],
+          secondStage: listPokemonUrlSprit[1],
+          thirdStage: listPokemonUrlSprit[2],
+        };
+      }),
+    );
   }
 
   formatPokemonInfo(pokemon: IPokemonInfo): IPokemonInfo {
