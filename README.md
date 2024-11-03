@@ -5,7 +5,7 @@
   <img src="./src/assets/pokedexIcon.svg" alt="Minha Imagem" width="300"/>
 </div>
 
-Esse é um projeto feito como atividade do curso Estartando Devs, ondem foi proposto para praticar conceitos básicos de angular 17 com a modularização. O link do figma que foi usando como base para fazer a [PokeDex](https://www.figma.com/design/1ITUfuXdJiJsj3ngemw7x6/Pok%C3%A9Dex----A-PokeDex-Website-Design-(Community)?node-id=0-1&node-type=canvas&t=4XO5FBuZGxA46Na0-0)
+Esse é um projeto feito como atividade do curso Estartando Devs, ondem foi proposto para praticar conceitos básicos de angular 17 com a modularização, a principio vai ser apenas os primeiros 151 pokemon disponíveis. O link do figma que foi usando como base para fazer a [PokeDex](https://www.figma.com/design/1ITUfuXdJiJsj3ngemw7x6/Pok%C3%A9Dex----A-PokeDex-Website-Design-(Community)?node-id=0-1&node-type=canvas&t=4XO5FBuZGxA46Na0-0)
 
 ## Tecnologias Utilizadas 🚀
 - Angular 17

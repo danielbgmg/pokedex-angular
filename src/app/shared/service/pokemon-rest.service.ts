@@ -10,7 +10,7 @@ import { IPokemonEvolutionRequest } from '../models/pokemon-evolution';
   providedIn: 'root',
 })
 export class PokemonRestService {
-  private url = 'https://pokeapi.co/api/v2/pokemon?limit=6&offset=0';
+  private url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
   private urlPokemon = 'https://pokeapi.co/api/v2/pokemon/';
   private urlDescPokemon = 'https://pokeapi.co/api/v2/pokemon-species/';
 
