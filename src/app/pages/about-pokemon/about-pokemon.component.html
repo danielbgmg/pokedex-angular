@@ -47,7 +47,7 @@
   </section>
   <section class="pokemon-evolution">
     <h2>Evolution</h2>
-    <div class="evolutions">
+    <div class="evolutions" *ngIf="pokemonEvolutionsName">
       <div>
         <img [ngSrc]="pokemonEvolutionsName.firstStage" width="65" height="65" alt="bulba" />
       </div>
