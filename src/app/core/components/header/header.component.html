@@ -1,8 +1,11 @@
 <header>
-  <div>
+  <div class="header-logo">
     <a routerLink="'home'">
       <img ngSrc="assets/pokedexIcon.svg" fill alt="PokeDex Logo" priority />
     </a>
   </div>
-  <i class="fa-solid fa-bars"></i>
+  <div class="toggle-theming">
+    <input type="checkbox" name="toggle" id="toggle" (change)="onToggleChange()" />
+    <label for="toggle"></label>
+  </div>
 </header>

@@ -5,6 +5,7 @@
   --button: #ff5350;
   --text-color-placeholder: #c9b3b3;
   --bg-color: #f6f8fc;
+  --bg-toggle: #dd092f;
   --bg-color-pokeball: invert(88%) sepia(6%) saturate(47%) hue-rotate(180deg) brightness(95%) contrast(89%);
 }
 @mixin dark-mode-theme() {
@@ -14,5 +15,6 @@
   --text-color-placeholder: #c9b3b3;
   --button: #ff5350;
   --bg-color: #dd092f;
+  --bg-toggle: #f6f8fc;
   --bg-color-pokeball: invert(34%) sepia(64%) saturate(4099%) hue-rotate(328deg) brightness(96%) contrast(92%);
 }

@@ -4,10 +4,47 @@ header {
   align-items: center;
   width: 100%;
   height: 100px;
-  div {
+
+  .header-logo {
     position: relative;
     width: 106px;
     height: 32px;
+  }
+
+  .toggle-theming {
+
+    input {
+      display: none;
+    }
+
+
+    label {
+      position: relative;
+      display: block;
+      width: 60px;
+      height: 30px;
+      background-color: var(--bg-toggle);
+      border-radius: 50px;
+      padding: 2px;
+    }
+
+    label:after {
+      content: '';
+      background-image: url('../../../../assets/pokeballIconTG.svg');
+      background-size: contain;
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      // background-color: red;
+      border-radius: 50%;
+      transition: 0.3s;
+      left: 2px;
+    }
+
+    input:checked + label:after {
+      left: 32px;
+      transition: 0.3s;
+    }
   }
 
   @media screen and (min-width: 1300px) {
@@ -15,7 +52,7 @@ header {
       height: 135px;
       padding: 0 57px;
     }
-    div {
+    .header-logo {
       width: 192px;
       height: 61px;
     }
